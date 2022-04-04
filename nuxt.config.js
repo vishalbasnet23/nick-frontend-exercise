@@ -25,6 +25,7 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     '@nuxtjs/style-resources',
+    '@nuxtjs/google-fonts',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -52,5 +53,11 @@ export default {
   build: {},
   styleResources: {
     scss: ['~assets/scss/mixins.scss', '~assets/scss/variables.scss'],
+  },
+  googleFonts: {
+    families: {
+      // a simple name
+      Roboto: true,
+    },
   },
 }
