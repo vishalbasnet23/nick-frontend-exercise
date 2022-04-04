@@ -8,12 +8,23 @@
       </div>
       <div class="login__content">
         <div class="login__form">
-          <form action="javascript:;" class="form">
+          <form action="javascript:;" class="form" @submit="submitUserData">
             <div class="form__group">
-              <input class="form__input" type="text" name="email" required />
+              <input
+                v-model="email"
+                class="form__input"
+                type="text"
+                name="email"
+                required
+              />
             </div>
             <div class="form__group">
-              <input class="form__input" type="password" required />
+              <input
+                v-model="password"
+                class="form__input"
+                type="password"
+                required
+              />
             </div>
             <div class="form__group">
               <button class="form__btn" type="submit">
@@ -27,8 +38,24 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
 export default {
   name: 'LoginPage',
+  data() {
+    return {
+      email: '',
+      password: '',
+    }
+  },
+  methods: {
+    ...mapActions('user', {
+      handleLogin: 'handleLogin',
+    }),
+    submitUserData() {
+      this.handleLogin({email: this.email, password: this.password});
+      // console.log(this.email, this.password);
+    }
+  },
 }
 </script>
 <style lang="scss" scoped>
