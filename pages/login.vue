@@ -38,23 +38,64 @@
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'LoginPage',
+  middleware({ store, redirect }) {
+    if (store.state.user.userAuth) {
+      redirect('/users')
+    }
+  },
   data() {
     return {
       email: '',
       password: '',
     }
   },
+  computed: {
+    ...mapGetters('global', {
+      loadingMessage: 'loadingMessage',
+      errorMessage: 'errorMessage',
+    }),
+    ...mapGetters('user', {
+      isAuthenticated: 'userAuthenticated',
+    }),
+  },
+  created() {
+    this.unwatchLoading = this.$store.watch(
+      (state, getters) => getters['global/loadingState'],
+      (newValue, oldValue) => {
+        if (newValue) {
+          this.$toast.success(this.loadingMessage, {
+            duration: 1000,
+            singleton: true,
+          })
+        }
+      }
+    )
+    this.unwatchError = this.$store.watch(
+      (state, getters) => getters['global/errorState'],
+      (newValue, oldValue) => {
+        if (newValue) {
+          this.$toast.error(this.errorMessage, {
+            duration: 2000,
+            singleton: true,
+          })
+        }
+      }
+    )
+  },
+  beforeDestroy() {
+    this.unwatchLoading()
+    this.unwatchError()
+  },
   methods: {
     ...mapActions('user', {
       handleLogin: 'handleLogin',
     }),
     submitUserData() {
-      this.handleLogin({email: this.email, password: this.password});
-      // console.log(this.email, this.password);
-    }
+      this.handleLogin({ email: this.email, password: this.password })
+    },
   },
 }
 </script>
