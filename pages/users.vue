@@ -1,5 +1,5 @@
 <template>
-  <div class="users__page">
+  <div :class="['users__page', modalState]">
     <Aside />
     <main class="users__main">
       <h2 class="users__main_title">Users</h2>
@@ -63,6 +63,9 @@ export default {
   display: grid;
   height: 100vh;
   grid-template-columns: 300px 1fr;
+  &.open {
+    overflow: hidden;
+  }
 }
 .users__main {
   padding: 2rem 4rem;

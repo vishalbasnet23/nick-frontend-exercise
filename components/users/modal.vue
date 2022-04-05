@@ -209,7 +209,10 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid var(--ini-bor-dark);
+            border: 2px solid #212121;
+          }
+          a {
+            color: #212121;
           }
         }
       }
