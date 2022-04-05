@@ -1,9 +1,9 @@
 <template>
-  <div class="modal open">
+  <div v-if="modalData" :class="['modal', modalState]">
     <div class="modal__overlay"></div>
     <div class="modal__content">
       <figure class="modal__image">
-        <img src="https://picsum.photos/200/264" alt="" />
+        <img :src="modalData.image" alt="" />
       </figure>
       <div class="modal__desc">
         <ul class="modal__desc_list">
@@ -23,7 +23,7 @@
                 </g>
               </svg>
             </span>
-            Leane Graham
+            {{ modalData.name }}
           </li>
           <li>
             <span>
@@ -44,10 +44,7 @@
                 </g>
               </svg>
             </span>
-            <a
-              href="mailto:me@me.com?subject=We are hiring!&body=. We'd like to propose you an offer."
-              >sincere@april.biz</a
-            >
+            <a :href="`mailto:${modalData.email}`">sincere@april.biz</a>
           </li>
           <li>
             <span>
@@ -66,7 +63,7 @@
                 </g>
               </svg>
             </span>
-            <a href="tel:">1-770-736-8031</a>
+            <a :href="`tel:${modalData.phone}`">{{ modalData.phone }}</a>
           </li>
           <li>
             <span>
@@ -84,7 +81,9 @@
                 </g>
               </svg>
             </span>
-            <a href="" target="__blank">Gwenborough, Kulas Light</a>
+            <a href="" target="__blank" v-if="modalData.address"
+              >{{ modalData.address.street }} {{ modalData.address.city }}</a
+            >
           </li>
           <li>
             <span>
@@ -110,11 +109,11 @@
                 </g>
               </svg>
             </span>
-            <a href="" target="__blank">hildegrad.org</a>
+            <a href="" target="__blank">{{ modalData.website }}</a>
           </li>
         </ul>
       </div>
-      <a href="#!" class="modal__content_close"
+      <a href="#!" class="modal__content_close" @click="handleModalClose"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           width="28"
@@ -138,6 +137,12 @@
 <script>
 export default {
   name: 'UserModal',
+  props: ['modalData', 'modalState'],
+  methods: {
+    handleModalClose() {
+      this.$emit('modalClose')
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -154,28 +159,41 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 104px);
   text-align: left;
   .modal__overlay {
     background: rgba($color: #000000, $alpha: 0.5);
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 104px);
   }
   .modal__content {
     position: absolute;
     top: 50%;
     left: 50%;
-    background: white;
+    background: #fff;
     display: flex;
     transform: translate(-50%, -50%);
     border-radius: 5px;
     overflow: hidden;
-    width: 58%;
+    flex-direction: column;
+    height: 300px;
+    .modal__image {
+      margin: 0;
+      img {
+        width: 100%;
+        height: auto;
+        max-height: 19vh;
+        object-fit: cover;
+      }
+    }
     .modal__desc {
       padding: 2rem;
       display: flex;
       align-items: center;
       .modal__desc_list {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
         display: flex;
         flex-direction: column;
         gap: 0.6rem;
@@ -191,7 +209,7 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid #212121;
+            border: 2px solid var(--ini-bor-dark);
           }
         }
       }
@@ -200,6 +218,28 @@ export default {
       position: absolute;
       top: 0.6rem;
       right: 0.6rem;
+    }
+  }
+}
+/* 768px */
+@media (min-width: 48rem) {
+  .modal.open {
+    width: calc(100vw - 300px);
+    height: 100vh;
+    .modal__overlay {
+      width: calc(100vw - 300px);
+      height: 100vh;
+    }
+    .modal__content {
+      flex-direction: row;
+      .modal__image {
+        margin: 0;
+        img {
+          width: 200px;
+          object-fit: unset;
+          max-height: 100%;
+        }
+      }
     }
   }
 }

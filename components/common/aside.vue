@@ -49,7 +49,8 @@
         </a>
       </nav>
     </div>
-  </aside><!-- .sidebar -->
+  </aside>
+  <!-- .sidebar -->
 </template>
 <script>
 export default {
@@ -59,34 +60,66 @@ export default {
 <style lang="scss" scoped>
 // Aside
 .sidebar {
-	background: #f3f4f6;
-	display: grid;
-	grid-template-rows: auto 1fr auto;
-	gap: 1rem;
+  background: #f3f4f6;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
   height: 100vh;
-	position: sticky;
-	top: 0;
-	padding: 2rem;
-	.sidebar__nav {
-		display: flex;
-		flex-direction: column;
-		text-transform: uppercase;
-		gap: 1rem;
-		text-align: center;
-		a {
-			padding: 0.7rem 0.4rem;
-			border: 1px solid #dadada;
-			border-left: 0;
-			border-right: 0;
-		}
-	}
-	.sidebar__actions {
-		nav a  {
-			display: flex;
-			gap: 0.4rem;
-			align-items: center;
-		}
-	}
+  position: sticky;
+  top: 0;
+  padding: 2rem;
+  .sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    gap: 1rem;
+    text-align: center;
+    a {
+      padding: 0.7rem 0.4rem;
+      border: 1px solid #dadada;
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+  .sidebar__actions {
+    nav a {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+  }
 }
-
+/* 768px */
+@media (min-width: 48rem) {
+  .sidebar {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    gap: 1rem;
+    justify-content: stretch;
+    align-items: flex-start;
+    .sidebar__nav {
+      display: flex;
+      flex-direction: column;
+      text-transform: uppercase;
+      gap: 1rem;
+      text-align: center;
+      a {
+        padding: 0.7rem 0.4rem;
+        border: 1px solid var(--ini-bor-gray);
+        border-left: 0;
+        border-right: 0;
+      }
+    }
+    .sidebar__actions {
+      nav a {
+        display: flex;
+        gap: 0.4rem;
+        align-items: center;
+      }
+    }
+  }
+}
 </style>

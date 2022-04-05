@@ -1,11 +1,11 @@
 <template>
-  <div class="users__grid_user">
+  <div class="users__grid_user" @click="openModal(userData)">
     <figure class="user__image">
-      <img src="https://picsum.photos/150/200" alt="" />
+      <nuxt-img :src="userData.image" sizes="sm:100px md:100px lg:100px" />
       <div class="user__overlay">
         <a
           class="user__overlay_icon"
-          href="mailto:me@me.com?subject=We are hiring!&body=. We'd like to propose you an offer."
+          :href="`mailto:${userData.email}`"
           target="__blank"
         >
           <svg
@@ -26,8 +26,8 @@
           </svg>
         </a>
         <div class="user_overlay_desc">
-          <h2 class="user__overlay_descname">Leanne Graham</h2>
-          <h3 class="user__overlay_desccity">Gwenborough</h3>
+          <h2 class="user__overlay_descname">{{ userData.name }}</h2>
+          <h3 class="user__overlay_desccity">{{ userData.address.city }}</h3>
         </div>
       </div>
     </figure>
@@ -35,7 +35,13 @@
 </template>
 <script>
 export default {
-  name: 'userBox',
+  name: 'UserBox',
+  props: ['userData'],
+  methods: {
+    openModal(userData) {
+      this.$emit('populateModal', userData)
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -49,6 +55,13 @@ export default {
     border-radius: 4px;
     overflow: hidden;
     position: relative;
+    img {
+      width: 150px;
+      height: 200px;
+      object-fit: cover;
+    }
+    // height: 100px;
+    // object-fit: cover;
     .user__overlay {
       opacity: 0;
       transition: all 0.3s ease-in;
