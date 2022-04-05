@@ -1,7 +1,7 @@
 <template>
   <div class="users__grid_user" @click="openModal(userData)">
     <figure class="user__image">
-      <nuxt-img :src="userData.image" sizes="sm:100px md:100px lg:100px" />
+      <img :src="userData.image" sizes="sm:100px md:100px lg:100px" />
       <div class="user__overlay">
         <a
           class="user__overlay_icon"
