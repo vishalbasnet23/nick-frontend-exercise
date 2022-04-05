@@ -56,6 +56,7 @@ export default {
     ...mapGetters('global', {
       loadingMessage: 'loadingMessage',
       errorMessage: 'errorMessage',
+      successMessage: 'successState',
     }),
     ...mapGetters('user', {
       isAuthenticated: 'userAuthenticated',
@@ -84,10 +85,23 @@ export default {
         }
       }
     )
+    this.unwatchSuccess = this.$store.watch(
+      (state, getters) => getters['global/successState'],
+      (newValue, oldValue) => {
+        console.log(newValue, oldValue)
+        if (newValue) {
+          this.$toast.error(this.successMessage, {
+            duration: 2000,
+            singleton: true,
+          })
+        }
+      }
+    )
   },
   beforeDestroy() {
     this.unwatchLoading()
     this.unwatchError()
+    this.unwatchSuccess()
   },
   methods: {
     ...mapActions('user', {

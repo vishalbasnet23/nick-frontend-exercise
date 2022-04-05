@@ -6,6 +6,10 @@ export const mutations = {
   LOGIN_USER(state) {
     state.userAuth = true
   },
+  LOG_OUT(state) {
+    state.userAuth = false
+    this.app.router.push('/login')
+  },
 }
 
 export const actions = {
@@ -32,6 +36,13 @@ export const actions = {
         commit('global/SET_LOADING_MESSAGE', '', { root: true })
         resolve()
       }, 1000)
+    })
+  },
+  handleLogOut({ commit }) {
+    commit('LOG_OUT')
+    commit('global/SET_SUCCESS_MESSAGE', 'You are logged out', { root: true })
+    commit('global/SET_SUCCESS', true, {
+      root: true,
     })
   },
 }

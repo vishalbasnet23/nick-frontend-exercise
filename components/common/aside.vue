@@ -22,7 +22,7 @@
     </nav>
     <div class="sidebar__actions">
       <nav>
-        <a class="" href="#">
+        <a class="" @click.prevent="handleLogOut">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -52,9 +52,15 @@
   </aside>
   <!-- .sidebar -->
 </template>
-<script>
+<script>import { mapActions } from "vuex";
+
 export default {
   name: 'MenuAside',
+  methods: {
+    ...mapActions('user', {
+      handleLogOut: 'handleLogOut'
+    }),
+  },
 }
 </script>
 <style lang="scss" scoped>

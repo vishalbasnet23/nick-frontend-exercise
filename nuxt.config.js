@@ -62,7 +62,4 @@ export default {
       Roboto: true,
     },
   },
-  router: {
-    middleware: 'auth-guard',
-  },
 }
