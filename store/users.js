@@ -4,7 +4,7 @@ export const state = () => ({
 
 export const actions = {
   async getUsers({ commit }) {
-    const users = await this.$axios.$get('http://localhost:3002/users')
+    const users = await this.$axios.$get('https://mock.follow.it/profiles.json')
     commit('SET_USERS', users)
   },
 }
