@@ -152,6 +152,10 @@ export default {
   .modal__content {
     transform: translateY(-10%);
   }
+  a {
+    color: var(--ini-heading-color);
+    text-decoration: none;
+  }
 }
 .modal.open {
   display: block;
@@ -159,30 +163,29 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100vh - 104px);
+  height: calc(100vh);
   text-align: left;
   .modal__overlay {
     background: rgba($color: #000000, $alpha: 0.5);
     width: 100%;
-    height: calc(100vh - 104px);
+    height: calc(100vh);
   }
   .modal__content {
     position: absolute;
     top: 50%;
     left: 50%;
-    background: #fff;
+    background: var(--ini-white-color);
     display: flex;
     transform: translate(-50%, -50%);
     border-radius: 5px;
     overflow: hidden;
     flex-direction: column;
-    height: 300px;
     .modal__image {
       margin: 0;
       img {
         width: 100%;
         height: auto;
-        max-height: 19vh;
+        max-height: 20vh;
         object-fit: cover;
       }
     }
@@ -209,10 +212,7 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid #212121;
-          }
-          a {
-            color: #212121;
+            border: 2px solid var(--ini-bor-dark);
           }
         }
       }

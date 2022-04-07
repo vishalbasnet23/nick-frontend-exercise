@@ -135,7 +135,7 @@ export default {
           &.login__heading {
             font-size: 1.8rem;
             font-weight: 100;
-            color: $heading-color;
+            color: var(--ini-heading-color);
             text-align: center;
             margin: 5rem 0 2.5rem 0;
             width: 100%;
@@ -168,12 +168,12 @@ export default {
             & .form__input {
               display: flex;
               width: 100%;
-              padding: $form-group-element-padding;
+              padding: var(--ini-form-group-element-padding);
               border-radius: 0.25rem;
-              background: $form-input-background;
-              font-size: $input-font-size;
+              background: var(--ini-form-input-background);
+              font-size: var(--ini-input-font-size);
               letter-spacing: 0.125rem;
-              color: $text-input-color;
+              color: var(--ini-text-input-color);
               border-color: transparent;
               &:focus {
                 outline: none;
@@ -184,22 +184,22 @@ export default {
               display: flex;
               width: 100%;
               justify-content: center;
-              padding: $form-group-element-padding;
+              padding: var(--ini-form-group-element-padding);
               cursor: pointer;
-              border: 0.1rem solid $text-color;
+              border: 0.1rem solid var(--ini-text-color);
               border-radius: 0.25rem;
-              background: $button-color;
+              background: var(--ini-button-color);
               box-shadow: none;
               outline: none;
               text-transform: uppercase;
               margin-top: 2rem;
               &:hover {
-                color: $text-color-inverse;
+                color: var(--ini-text-color-inverse);
                 &::after {
                   width: 100%;
                 }
                 & .form__btn-text {
-                  color: $text-color-inverse;
+                  color: var(--ini-text-color-inverse);
                 }
               }
               & .form__btn-text {
@@ -207,7 +207,7 @@ export default {
                 z-index: 99;
                 font-size: 1rem;
                 letter-spacing: 0.25rem;
-                color: $text-color;
+                color: var(--ini-text-color);
                 font-weight: 700;
               }
             }

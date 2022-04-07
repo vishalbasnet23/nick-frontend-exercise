@@ -1,7 +1,7 @@
 <template>
   <div :class="['users__page', modalState]">
     <Aside />
-    <main class="users__main">
+    <main :class="['users__main', modalState]">
       <h2 class="users__main_title">Users</h2>
       <div class="users__grid">
         <User
@@ -58,19 +58,18 @@ export default {
   },
 }
 </script>
+
 <style lang="scss" scoped>
-.users__page {
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 300px 1fr;
-  &.open {
-    overflow: hidden;
-  }
+a {
+  color: var(--ini-heading-color);
+  text-decoration: none;
 }
+// Users Main
 .users__main {
-  padding: 2rem 4rem;
-  text-align: right;
+  padding: 2rem;
+  text-align: center;
   position: relative;
+
   .users__main_title {
     text-transform: uppercase;
     font-size: 2rem;
@@ -78,16 +77,22 @@ export default {
     text-align: right;
     font-weight: 600;
     display: inline-flex;
-    border-bottom: 4px solid #444;
+    border-bottom: 4px solid var(--ini-heading-color);
     padding-bottom: 0.4rem;
   }
   .users__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+
     justify-content: center;
     gap: 2rem;
   }
+  &.open {
+    overflow: hidden;
+    height: 100vh;
+  }
 }
+
 /* 768px */
 @media (min-width: 48rem) {
   .users__page {
@@ -99,6 +104,11 @@ export default {
     padding: 2rem;
     max-height: 100vh;
     overflow-y: auto;
+    text-align: right;
+    &.open {
+      overflow: hidden;
+      height: 100%;
+    }
   }
 }
 

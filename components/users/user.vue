@@ -60,8 +60,6 @@ export default {
       height: 200px;
       object-fit: cover;
     }
-    // height: 100px;
-    // object-fit: cover;
     .user__overlay {
       opacity: 0;
       transition: all 0.3s ease-in;
@@ -73,16 +71,25 @@ export default {
       background: rgba($color: #000000, $alpha: 0.5);
       border-radius: 4px;
       overflow: hidden;
-      color: #ffffff;
+      color: var(--ini-white-color);
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 0.4rem;
       a {
         width: 24px;
         height: 24px;
         position: absolute;
         top: 0.6rem;
         right: 0.6rem;
+      }
+      .user__overlay_descname {
+        font-weight: 600;
+        font-size: calc(0.5rem + 0.9vw);
+      }
+      .user__overlay_desccity {
+        margin-bottom: 0;
+        font-size: calc(0.5rem + 0.9vw);
       }
     }
     &:hover {

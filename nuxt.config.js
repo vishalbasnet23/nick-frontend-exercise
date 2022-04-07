@@ -55,7 +55,7 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   styleResources: {
-    scss: ['~assets/scss/mixins.scss', '~assets/scss/variables.scss'],
+    scss: ['~assets/scss/mixins.scss', '~assets/scss/reset.scss'],
   },
   googleFonts: {
     families: {

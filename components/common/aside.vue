@@ -52,13 +52,14 @@
   </aside>
   <!-- .sidebar -->
 </template>
-<script>import { mapActions } from "vuex";
+<script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'MenuAside',
   methods: {
     ...mapActions('user', {
-      handleLogOut: 'handleLogOut'
+      handleLogOut: 'handleLogOut',
     }),
   },
 }
@@ -66,26 +67,17 @@ export default {
 <style lang="scss" scoped>
 // Aside
 .sidebar {
-  background: #f3f4f6;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  background: var(--ini-bg-gray);
   gap: 1rem;
-  height: 100vh;
-  position: sticky;
-  top: 0;
   padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   .sidebar__nav {
     display: flex;
-    flex-direction: column;
     text-transform: uppercase;
     gap: 1rem;
     text-align: center;
-    a {
-      padding: 0.7rem 0.4rem;
-      border: 1px solid #dadada;
-      border-left: 0;
-      border-right: 0;
-    }
   }
   .sidebar__actions {
     nav a {
@@ -93,6 +85,10 @@ export default {
       gap: 0.4rem;
       align-items: center;
     }
+  }
+  a {
+    color: var(--ini-heading-color);
+    text-decoration: none;
   }
 }
 /* 768px */
